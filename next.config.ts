@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
         port: '**',
       },
     ],
+    // Disable image optimization for local images to prevent 400 errors in deployment
+    unoptimized: true,
   },
   // Add headers for better security and SEO
   async headers() {
