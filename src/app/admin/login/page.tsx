@@ -94,7 +94,7 @@ export default function AdminLogin() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
-                  placeholder="admin@satyamexports.com"
+                  placeholder="Email"
                 />
               </div>
               
@@ -127,12 +127,6 @@ export default function AdminLogin() {
                     Remember me
                   </label>
                 </div>
-                
-                <div className="text-sm">
-                  <Link href="#" className="font-medium text-green-600 hover:text-green-500">
-                    Forgot password?
-                  </Link>
-                </div>
               </div>
               
               <div>
@@ -155,26 +149,6 @@ export default function AdminLogin() {
                 </button>
               </div>
             </form>
-            
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">
-                    For testing purposes
-                  </span>
-                </div>
-              </div>
-              
-              <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                <p className="text-xs text-gray-600">
-                  <span className="font-medium">Email:</span> admin@satyamexports.com<br />
-                  <span className="font-medium">Password:</span> admin123
-                </p>
-              </div>
-            </div>
           </div>
         </div>
         
