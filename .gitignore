@@ -61,18 +61,13 @@ playwright-report/
 test-results/
 
 # Next.js specific
-.next/
 !.next/server/
 !.next/serverless/
-
-# macOS
-*.DS_Store
 
 # JetBrains IDEs (WebStorm, IntelliJ)
 *.iml
 *.ipr
 *.iws
-.idea/
 
 # VSCode workspace files
 *.code-workspace

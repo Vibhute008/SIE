@@ -343,22 +343,11 @@ export default function AdminProducts() {
                       {previewImages[index] ? (
                         <div className="mt-3">
                           <Image
-                            src={previewImages[index]}
+                            src={previewImages[index] || '/no_image.png'}
                             alt={`Preview ${index + 1}`}
                             width={128}
                             height={128}
                             className="h-32 w-32 object-cover rounded-lg"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.onerror = null;
-                              target.parentElement!.innerHTML = `
-                                <div class="h-32 w-32 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center">
-                                  <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                  </svg>
-                                </div>
-                              `;
-                            }}
                           />
                         </div>
                       ) : (
@@ -610,22 +599,10 @@ export default function AdminProducts() {
                           {product.imageUrl ? (
                             <Image 
                               className="h-10 w-10 rounded-md object-cover" 
-                              src={product.imageUrl} 
+                              src={product.imageUrl || '/no_image.png'} 
                               alt={product.name}
                               width={40}
                               height={40}
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.onerror = null;
-                                target.style.display = 'none';
-                                target.parentElement!.innerHTML = `
-                                  <div class="h-10 w-10 rounded-md bg-gray-200 border border-gray-300 flex items-center justify-center">
-                                    <svg class="h-6 w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                  </div>
-                                `;
-                              }}
                             />
                           ) : (
                             <div className="h-10 w-10 rounded-md bg-gray-200 border border-gray-300 flex items-center justify-center">

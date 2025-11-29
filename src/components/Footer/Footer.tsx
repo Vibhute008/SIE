@@ -11,6 +11,7 @@ export default function Footer() {
     email: 'info.satyamimportandexport&#64;gmail.com',
     phone: '+91 9004633136'
   });
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     // Load company info from localStorage
@@ -61,15 +62,12 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <Image
-                src="/logo.png"
+                src={logoError ? '/no_image.png' : '/logo.png'}
                 alt="Satyam Import & Export Logo"
                 width={56}
                 height={56}
                 className="rounded-full object-cover"
-                onError={(e) => {
-                  // Fallback to default image if loading fails
-                  e.currentTarget.src = '/no_image.png';
-                }}
+                onError={() => setLogoError(true)}
               />
               <h3 className="text-xl font-bold">Satyam Import & Export</h3>
             </div>

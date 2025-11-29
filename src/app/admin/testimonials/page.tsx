@@ -207,20 +207,11 @@ export default function TestimonialsAdmin() {
                 <div className="flex items-center gap-4">
                   {testimonial.image ? (
                     <Image 
-                      src={testimonial.image} 
+                      src={testimonial.image || '/no_image.png'} 
                       alt={testimonial.name}
                       width={48}
                       height={48}
                       className="w-12 h-12 rounded-full object-cover border border-slate-200"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.parentElement!.innerHTML = `
-                          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: ${getColorFromName(testimonial.name)}">
-                            <span class="text-white font-bold">${getInitials(testimonial.name)}</span>
-                          </div>
-                        `;
-                      }}
                     />
                   ) : (
                     <div 

@@ -130,7 +130,7 @@ export default function ContactPage() {
     hideAlert();
   };
 
-  // Add JSON-LD structured data for SEO
+  // Add enhanced JSON-LD structured data for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -153,6 +153,10 @@ export default function ContactPage() {
       "contactType": "sales",
       "availableLanguage": ["English"]
     }],
+    "areaServed": {
+      "@type": "Place",
+      "name": "Global"
+    },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [{

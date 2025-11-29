@@ -18,6 +18,8 @@ interface GalleryImage {
 export default function GalleryPage() {
   // Gallery images data - load from localStorage
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  // Create a state object to track image errors for each gallery item
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -42,7 +44,7 @@ export default function GalleryPage() {
     ? galleryImages 
     : galleryImages.filter((img: GalleryImage) => img.category === selectedCategory);
 
-  // Add JSON-LD structured data for SEO
+  // Add enhanced JSON-LD structured data for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MediaGallery",
@@ -53,9 +55,14 @@ export default function GalleryPage() {
       "@type": "ImageObject",
       "name": img.title,
       "caption": img.description,
-      "contentUrl": img.image,
-      "description": img.description
+      "contentUrl": `https://satyamexport.com${img.image}`,
+      "description": img.description,
+      "representativeOfPage": false
     })),
+    "creator": {
+      "@type": "Organization",
+      "name": "Satyam Import and Export"
+    },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [{
@@ -130,16 +137,12 @@ export default function GalleryPage() {
                 <div key={item.id} className="group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-64 overflow-hidden">
                     <Image 
-                      src={item.image} 
+                      src={imageErrors[item.id] ? '/no_image.png' : item.image} 
                       alt={item.title} 
                       width={600}
                       height={400}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        // Fallback in case of image loading error
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/placeholder-image.jpg';
-                      }}
+                      onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                       <div className="p-6 text-white">

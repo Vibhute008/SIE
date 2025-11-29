@@ -335,10 +335,6 @@ export default function AdminBlog() {
                         width={128}
                         height={128}
                         className="w-32 h-32 object-cover rounded-lg border border-black"
-                        onError={(e) => {
-                          // Fallback to default image if loading fails
-                          e.currentTarget.src = '/no_image.png';
-                        }}
                       />
                     </div>
                   )}

@@ -20,6 +20,7 @@ interface Testimonial {
 
 export default function AboutPage() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [aboutImageError, setAboutImageError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -73,13 +74,31 @@ export default function AboutPage() {
   // Duplicate testimonials for infinite scroll effect
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
-  // Add JSON-LD structured data for SEO
+  // Add enhanced JSON-LD structured data for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "About Satyam Import and Export",
     "description": "Learn about Satyam Import and Export, India's premier agricultural product exporter. Discover our story, mission, values, and commitment to quality in global trade.",
     "url": "https://satyamexport.com/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Satyam Import and Export",
+      "description": "Premium agricultural product exporters from India, specializing in onions, lemons, rice, lentils, and spices for global markets.",
+      "foundingDate": "2020",
+      "founder": {
+        "@type": "Person",
+        "name": "Shubham Raulo"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nirman Sankul Building, Tata Power Netaji Nagar",
+        "addressLocality": "Kalyan East",
+        "addressRegion": "Maharashtra",
+        "postalCode": "421306",
+        "addressCountry": "IN"
+      }
+    },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [{
@@ -144,15 +163,12 @@ export default function AboutPage() {
               </div>
               <div className="mt-10 lg:mt-0">
                 <Image 
-                  src="/about.png" 
+                  src={aboutImageError ? '/no_image.png' : '/about.png'}
                   alt="About Satyam Import and Export" 
                   width={600} 
                   height={400} 
                   className="rounded-xl w-full h-96 object-cover shadow-lg"
-                  onError={(e) => {
-                    // Fallback to default image if loading fails
-                    e.currentTarget.src = '/no_image.png';
-                  }}
+                  onError={() => setAboutImageError(true)}
                 />
               </div>
             </div>

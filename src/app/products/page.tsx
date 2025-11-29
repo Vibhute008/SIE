@@ -80,7 +80,7 @@ export default function ProductsPage() {
     setAlert({ ...alert, isOpen: false });
   };
 
-  // Add JSON-LD structured data for SEO
+  // Add enhanced JSON-LD structured data for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -100,7 +100,11 @@ export default function ProductsPage() {
         "price": product.price.replace(/[^\d.-]/g, ''),
         "availability": product.status === "In Stock" ? "InStock" : "OutOfStock"
       },
-      "image": product.imageUrl
+      "image": product.imageUrl,
+      "brand": {
+        "@type": "Brand",
+        "name": "Satyam Import and Export"
+      }
     })),
     "breadcrumb": {
       "@type": "BreadcrumbList",

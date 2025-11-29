@@ -91,7 +91,7 @@ export default function BlogPage() {
     }
   }, []);
 
-  // Add JSON-LD structured data for SEO
+  // Add enhanced JSON-LD structured data for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -118,7 +118,8 @@ export default function BlogPage() {
       },
       "image": post.imageUrl,
       "keywords": post.category,
-      "articleBody": post.content || post.excerpt
+      "articleBody": post.content || post.excerpt,
+      "wordCount": post.content ? extractTextFromHtml(post.content).split(/\s+/).length : 0
     })),
     "breadcrumb": {
       "@type": "BreadcrumbList",

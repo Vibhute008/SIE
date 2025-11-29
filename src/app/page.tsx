@@ -11,6 +11,7 @@ import { ResponsiveContainer } from '@/components/Responsive';
 export default function Home() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [heroImageError, setHeroImageError] = useState(false);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -79,8 +80,37 @@ export default function Home() {
     setAlert({ ...alert, isOpen: false });
   };
 
+  // Add enhanced JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Satyam Import and Export",
+    "description": "Export India's finest agricultural products including onions, lemons, rice, lentils, and spices to global markets. Quality certified with on-time delivery and farm-fresh produce.",
+    "url": "https://satyamexport.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://satyamexport.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Satyam Import and Export",
+      "url": "https://satyamexport.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://satyamexport.com/logo.png",
+        "width": 192,
+        "height": 192
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       
       <AlertPopup 
@@ -119,15 +149,12 @@ export default function Home() {
               </div>
               <div className="hidden lg:block animate-fade-in-right">
                 <Image 
-                  src="/hero.png" 
+                  src={heroImageError ? '/no_image.png' : '/hero.png'}
                   alt="Premium Agricultural Products" 
                   width={600} 
                   height={400} 
                   className="rounded-2xl w-full h-64 md:h-80 lg:h-96 object-cover shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-500"
-                  onError={(e) => {
-                    // Fallback to default image if loading fails
-                    e.currentTarget.src = '/no_image.png';
-                  }}
+                  onError={() => setHeroImageError(true)}
                 />
               </div>
             </div>
