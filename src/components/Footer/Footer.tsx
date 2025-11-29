@@ -66,6 +66,10 @@ export default function Footer() {
                 width={56}
                 height={56}
                 className="rounded-full object-cover"
+                onError={(e) => {
+                  // Fallback to default image if loading fails
+                  e.currentTarget.src = '/no_image.png';
+                }}
               />
               <h3 className="text-xl font-bold">Satyam Import & Export</h3>
             </div>

@@ -149,6 +149,10 @@ export default function AboutPage() {
                   width={600} 
                   height={400} 
                   className="rounded-xl w-full h-96 object-cover shadow-lg"
+                  onError={(e) => {
+                    // Fallback to default image if loading fails
+                    e.currentTarget.src = '/no_image.png';
+                  }}
                 />
               </div>
             </div>

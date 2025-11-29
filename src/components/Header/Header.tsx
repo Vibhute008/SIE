@@ -76,6 +76,10 @@ export default function Header() {
                   height={48}
                   className="rounded-full object-cover transition-all duration-300 hover:rotate-6"
                   priority
+                  onError={(e) => {
+                    // Fallback to default image if loading fails
+                    e.currentTarget.src = '/no_image.png';
+                  }}
                 />
                 <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
               </div>

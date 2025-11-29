@@ -124,6 +124,10 @@ export default function Home() {
                   width={600} 
                   height={400} 
                   className="rounded-2xl w-full h-64 md:h-80 lg:h-96 object-cover shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-500"
+                  onError={(e) => {
+                    // Fallback to default image if loading fails
+                    e.currentTarget.src = '/no_image.png';
+                  }}
                 />
               </div>
             </div>
