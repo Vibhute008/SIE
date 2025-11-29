@@ -12,67 +12,56 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Handle scroll effect for header
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
-    
-    // Load company info from localStorage
-    const savedCompanyInfo = localStorage.getItem('companyInfo');
-    if (savedCompanyInfo) {
+
+    const saved = localStorage.getItem('companyInfo');
+    if (saved) {
       try {
-        const companyInfo = JSON.parse(savedCompanyInfo);
-        setTimeout(() => {
-          setCompanyName(companyInfo.name || 'Satyam Import & Export');
-        }, 0);
-      } catch (e) {
-        console.error('Error parsing company info:', e);
-      }
+        const info = JSON.parse(saved);
+        setCompanyName(info.name || 'Satyam Import & Export');
+      } catch {}
     }
-    
-    // Listen for changes to company info
-    const handleStorageChange = (e: StorageEvent) => {
+
+    const handleStorage = (e: StorageEvent) => {
       if (e.key === 'companyInfo') {
         try {
-          const companyInfo = e.newValue ? JSON.parse(e.newValue) : null;
-          setTimeout(() => {
-            setCompanyName(companyInfo?.name || 'Satyam Import & Export');
-          }, 0);
-        } catch (e) {
-          console.error('Error parsing company info:', e);
-        }
+          const info = e.newValue ? JSON.parse(e.newValue) : null;
+          setCompanyName(info?.name || 'Satyam Import & Export');
+        } catch {}
       }
     };
-    
-    window.addEventListener('storage', handleStorageChange);
+
+    window.addEventListener('storage', handleStorage);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 
-  // Function to determine if a link is active
-  const isActive = (href: string) => {
-    if (href === '/') {
-      return pathname === '/';
-    }
-    return pathname?.startsWith(href);
-  };
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname?.startsWith(href);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white/90 backdrop-blur-sm py-4'
-    }`}>
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white shadow-lg py-2'
+          : 'bg-white/90 backdrop-blur-sm py-4'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center space-x-3 min-w-0">
-            <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-300">
+            <Link
+              href="/"
+              className="flex items-center hover:scale-105 transition-transform duration-300"
+            >
               <div className="relative">
                 <Image
                   src={logoError ? '/no_image.png' : '/logo.png'}
-                  alt="Satyam Import & Export Logo"
+                  alt="Company Logo"
                   width={48}
                   height={48}
                   className="rounded-full object-cover transition-all duration-300 hover:rotate-6"
@@ -83,9 +72,12 @@ export default function Header() {
               </div>
             </Link>
           </div>
-          
-          {/* Navigation - Responsive design */}
-          <nav className="flex space-x-1 md:space-x-2 lg:space-x-3" role="navigation" aria-label="Main navigation">
+
+          <nav
+            className="flex space-x-1 md:space-x-2 lg:space-x-3"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             {[
               { href: '/', label: 'Home' },
               { href: '/about', label: 'About' },
@@ -93,22 +85,24 @@ export default function Header() {
               { href: '/quality-certifications', label: 'Quality' },
               { href: '/gallery', label: 'Gallery' },
               { href: '/blog', label: 'Blog' },
-              { href: '/contact', label: 'Contact' }
+              { href: '/contact', label: 'Contact' },
             ].map((item) => (
-              <Link 
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`px-3 py-2 text-sm md:px-4 md:py-2 md:text-base rounded-lg font-medium transition-all duration-300 relative group whitespace-nowrap ${
-                  isActive(item.href) 
-                    ? 'text-green-700 bg-emerald-50' 
+                  isActive(item.href)
+                    ? 'text-green-700 bg-emerald-50'
                     : 'text-gray-700 hover:text-green-700 hover:bg-emerald-50'
                 }`}
                 aria-current={isActive(item.href) ? 'page' : undefined}
               >
                 {item.label}
-                <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-emerald-600 transition-all duration-300 ${
-                  isActive(item.href) ? 'w-4/5' : 'w-0 group-hover:w-3/5'
-                }`}></span>
+                <span
+                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-emerald-600 transition-all duration-300 ${
+                    isActive(item.href) ? 'w-4/5' : 'w-0 group-hover:w-3/5'
+                  }`}
+                ></span>
               </Link>
             ))}
           </nav>
