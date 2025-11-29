@@ -1,0 +1,631 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --green-500: #10b981;
+  --green-700: #047857;
+  --green-900: #064e3b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-green-500: var(--green-500);
+  --color-green-700: var(--green-700);
+  --color-green-900: var(--green-900);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Logo styling - remove background and add transparency support */
+img[alt*="Logo"] {
+  background-color: transparent;
+  backdrop-filter: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+img[alt*="Logo"]:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+/* Custom styles for our website */
+.hero-gradient {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+}
+
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Fix for text color contrast issues */
+.text-gray-500 {
+  color: #000000 !important; /* Changed to black */
+}
+
+.text-gray-600 {
+  color: #000000 !important; /* Changed to black */
+}
+
+.text-gray-700 {
+  color: #000000 !important; /* Changed to black */
+}
+
+.text-gray-900 {
+  color: #000000 !important; /* Changed to black */
+}
+
+.bg-gray-50 {
+  background-color: #ffffff !important; /* Changed to white */
+}
+
+.bg-gray-100 {
+  background-color: #f0f0f0 !important; /* Changed to light gray */
+}
+
+.bg-gray-200 {
+  background-color: #000000 !important; /* Changed to black */
+}
+
+.border-gray-200 {
+  border-color: #000000 !important; /* Changed to black */
+}
+
+.border-gray-300 {
+  border-color: #000000 !important; /* Changed to black */
+}
+
+.border-gray-400 {
+  border-color: #000000 !important; /* Changed to black */
+}
+
+/* Additional gray text to black conversions */
+.text-gray-400 {
+  color: #666666 !important; /* Changed to dark gray */
+}
+
+.text-gray-400:hover {
+  color: #000000 !important;
+}
+
+.hover\:text-gray-500:hover {
+  color: #000000 !important;
+}
+
+.bg-gray-600 {
+  background-color: #2d2d2d !important; /* Changed to dark background */
+}
+
+.bg-gray-600.bg-opacity-50 {
+  background-color: rgba(45, 45, 45, 0.5) !important;
+}
+
+/* Forms and inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="file"],
+textarea,
+select {
+  border-color: #000000 !important;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+option:checked {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+select:focus {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1) !important;
+}
+
+label {
+  color: #000000 !important;
+}
+
+/* Table headers */
+th {
+  color: #000000 !important;
+}
+
+td {
+  color: #000000 !important;
+}
+
+/* Modal and Animation Styles */
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced Responsive Utilities */
+/* Mobile-first approach with progressive enhancement */
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 479px) {
+  .xs\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .xs\:p-3 {
+    padding: 0.75rem;
+  }
+  
+  .xs\:px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .xs\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .xs\:gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .xs\:gap-4 {
+    gap: 1rem;
+  }
+  
+  .xs\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .xs\:flex-col {
+    flex-direction: column;
+  }
+  
+  .xs\:items-center {
+    align-items: center;
+  }
+  
+  .xs\:text-center {
+    text-align: center;
+  }
+}
+
+/* Small devices (landscape phones, 481px and up) */
+@media (min-width: 481px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .sm\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .sm\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .sm\:gap-4 {
+    gap: 1rem;
+  }
+  
+  .sm\:gap-6 {
+    gap: 1.5rem;
+  }
+  
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+  
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+  
+  .sm\:text-left {
+    text-align: left;
+  }
+}
+
+/* Medium devices (tablets, 769px and up) */
+@media (min-width: 769px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .md\:gap-6 {
+    gap: 1.5rem;
+  }
+  
+  .md\:gap-8 {
+    gap: 2rem;
+  }
+  
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  
+  .md\:items-center {
+    align-items: center;
+  }
+  
+  .md\:text-left {
+    text-align: left;
+  }
+}
+
+/* Large devices (desktops, 1025px and up) */
+@media (min-width: 1025px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .lg\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .lg\:gap-8 {
+    gap: 2rem;
+  }
+  
+  .lg\:gap-12 {
+    gap: 3rem;
+  }
+  
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+  
+  .lg\:items-center {
+    align-items: center;
+  }
+}
+
+/* Extra large devices (large desktops, 1281px and up) */
+@media (min-width: 1281px) {
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .xl\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .xl\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  
+  .xl\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .xl\:gap-12 {
+    gap: 3rem;
+  }
+  
+  .xl\:gap-16 {
+    gap: 4rem;
+  }
+}
+
+/* Container Queries for Component-Level Responsiveness */
+@container (min-width: 481px) {
+  .card-container\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 769px) {
+  .card-container\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 1025px) {
+  .card-container\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Touch Target Enhancements for Mobile */
+.touch-target-large {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px;
+}
+
+/* Focus Visible Ring for Accessibility */
+.focus-visible-ring:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Animation Delays for Staggered Effects */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+/* Text Heading Responsive */
+.text-heading-responsive {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+/* Text Responsive */
+.text-responsive {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* Product Card Enhancements */
+.product-card {
+  container-type: inline-size;
+}
+
+/* Container Query for Product Cards */
+@container (min-width: 300px) {
+  .product-card .product-title {
+    font-size: 1.125rem;
+  }
+  
+  .product-card .product-price {
+    font-size: 1.5rem;
+  }
+}
+
+@container (min-width: 400px) {
+  .product-card .product-title {
+    font-size: 1.25rem;
+  }
+  
+  .product-card .product-price {
+    font-size: 1.75rem;
+  }
+}
+
+/* Responsive Overflow Handling */
+.overflow-responsive {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .overflow-responsive {
+    overflow: visible;
+  }
+}
+
+/* Responsive Transform Utilities */
+.transform-responsive {
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .transform-responsive:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Responsive Transition Utilities */
+.transition-responsive {
+  transition: all 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .transition-responsive {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  @media (min-width: 768px) {
+    .transition-responsive {
+      transition: all 0.4s ease-in-out;
+    }
+  }
+}
+
+/* Device-specific optimizations */
+/* Mobile-first approach with progressive enhancement */
+@media (max-width: 480px) {
+  /* Smaller phones */
+  .mobile\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .mobile\:p-4 {
+    padding: 1rem;
+  }
+  
+  .mobile\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Tablets and larger phones */
+  .tablet\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .tablet\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Small desktops and large tablets */
+  .desktop-sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Large desktops */
+  .desktop-lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi\:antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .high-dpi\:subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+/* Dark mode responsive adjustments */
+@media (prefers-color-scheme: dark) {
+  .dark\:invert {
+    filter: invert(100%);
+  }
+  
+  .dark\:brightness-75 {
+    filter: brightness(0.75);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+  
+  .transition-responsive {
+    transition: none !important;
+  }
+}

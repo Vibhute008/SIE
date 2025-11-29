@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://satyamexport.com/</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://satyamexport.com/og-image-home.jpg</image:loc>
+      <image:title>Satyam Import and Export - Premium Agricultural Products from India</image:title>
+      <image:caption>Export India's finest agricultural products including onions, lemons, rice, and other agri products exported globally</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/about</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://satyamexport.com/og-image-about.jpg</image:loc>
+      <image:title>About Satyam Import and Export</image:title>
+      <image:caption>Learn about Satyam Import and Export, India's premier agricultural product exporter</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/products</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://satyamexport.com/og-image-products.jpg</image:loc>
+      <image:title>Premium Agricultural Products Catalog</image:title>
+      <image:caption>Explore our premium agricultural products including onions, lemons, rice, lentils, and spices</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/blog</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://satyamexport.com/og-image-blog.jpg</image:loc>
+      <image:title>Agricultural Insights & Trade Knowledge Blog</image:title>
+      <image:caption>Expert advice, market trends, and industry insights for global agricultural trade</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/contact</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://satyamexport.com/og-image-contact.jpg</image:loc>
+      <image:title>Contact Satyam Import and Export</image:title>
+      <image:caption>Get in touch with Satyam Import and Export for inquiries about agricultural products</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/gallery</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://satyamexport.com/quality-certifications</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
