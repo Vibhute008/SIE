@@ -5,13 +5,14 @@ import Image from 'next/image';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { useState, useEffect, useRef } from 'react';
+import { getInitials, getColorFromName } from '@/utils/avatarGenerator';
 
 interface Testimonial {
   id: number;
   name: string;
   location: string;
   content: string;
-  image: string;
+  image?: string;
   role?: string;
   company?: string;
   rating?: number;
@@ -142,7 +143,13 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="mt-10 lg:mt-0">
-                <div className="bg-black border border-gray-300 rounded-xl w-full h-96" />
+                <Image 
+                  src="/about.png" 
+                  alt="About Satyam Import and Export" 
+                  width={600} 
+                  height={400} 
+                  className="rounded-xl w-full h-96 object-cover shadow-lg"
+                />
               </div>
             </div>
           </div>
@@ -243,7 +250,12 @@ export default function AboutPage() {
                                   className="rounded-full object-cover border-4 border-white shadow-lg"
                                 />
                               ) : (
-                                <div className="bg-gray-200 border-2 border-dashed rounded-full w-16 h-16" />
+                                <div 
+                                  className="rounded-full w-16 h-16 flex items-center justify-center text-white font-bold text-xl"
+                                  style={{ backgroundColor: getColorFromName(testimonial.name) }}
+                                >
+                                  {getInitials(testimonial.name)}
+                                </div>
                               )}
                             </div>
                             <div className="ml-6 flex-1">

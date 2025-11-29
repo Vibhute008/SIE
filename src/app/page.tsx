@@ -2,24 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import ProductCard from '@/components/ProductCard/ProductCard';
 import AlertPopup from '@/components/AlertPopup/AlertPopup';
 import { ResponsiveContainer } from '@/components/Responsive';
 
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: string;
-  status: string;
-  imageUrl: string;
-  description: string;
-}
-
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
   const [formData, setFormData] = useState({
@@ -40,14 +30,14 @@ export default function Home() {
         if (storedProducts.length > 0) {
           // Sort by ID in descending order to get newest first, then take first 3
           const latestProducts = storedProducts
-            .sort((a: Product, b: Product) => b.id - a.id)
+            .sort((a: any, b: any) => b.id - a.id)
             .slice(0, 3);
           setProducts(latestProducts);
         } else {
           // If no products in localStorage, fetch from API
           const response = await fetch('/api/products');
           if (response.ok) {
-            const apiProducts: Product[] = await response.json();
+            const apiProducts: any[] = await response.json();
             // Sort by ID in descending order to get newest first, then take first 3
             const latestProducts = apiProducts
               .sort((a, b) => b.id - a.id)
@@ -128,7 +118,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="hidden lg:block animate-fade-in-right">
-                <div className="bg-gradient-to-br from-emerald-400 to-teal-500 border border-white/20 rounded-2xl w-full h-64 md:h-80 lg:h-96 shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-500"></div>
+                <Image 
+                  src="/hero.png" 
+                  alt="Premium Agricultural Products" 
+                  width={600} 
+                  height={400} 
+                  className="rounded-2xl w-full h-64 md:h-80 lg:h-96 object-cover shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-500"
+                />
               </div>
             </div>
           </ResponsiveContainer>
@@ -187,57 +183,64 @@ export default function Home() {
           </ResponsiveContainer>
         </section>
 
-        {/* Featured Products */}
+        {/* Why Choose Us */}
         <section className="py-12 md:py-16 bg-gray-50">
           <ResponsiveContainer>
             <div className="text-center animate-fade-in-up">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 sm:text-4xl text-heading-responsive">
-                Our Premium Products
+                Why Choose Satyam Import Export?
               </h2>
               <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-700 text-responsive">
-                Sourced directly from Indian farms to ensure the highest quality standards
+                Decades of experience in delivering premium agricultural products worldwide
               </p>
             </div>
 
-            <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-center">
-              {products.length > 0 ? (
-                products.map((product, index) => (
-                  <div key={product.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 200}ms` }}>
-                    <ProductCard 
-                      name={product.name}
-                      description={product.description}
-                      image={product.imageUrl}
-                      link={`/products/${product.id}`}
-                      price={product.price}
-                      status={product.status}
-                      category={product.category}
-                    />
+            <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {[
+                {
+                  title: "Farm Fresh Quality",
+                  description: "Direct sourcing from Indian farms ensures the highest quality produce with optimal freshness and nutritional value.",
+                  icon: (
+                    <svg className="h-10 w-10 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  )
+                },
+                {
+                  title: "Global Distribution",
+                  description: "Our extensive network delivers products to over 50 countries with reliable logistics and timely shipments.",
+                  icon: (
+                    <svg className="h-10 w-10 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )
+                },
+                {
+                  title: "Certified Standards",
+                  description: "All our products meet international quality standards with certifications from recognized agricultural authorities.",
+                  icon: (
+                    <svg className="h-10 w-10 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  )
+                }
+              ].map((feature, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${index * 200}ms` }}>
+                  <div className="flex justify-center mb-4">
+                    {feature.icon}
                   </div>
-                ))
-              ) : (
-                // Skeleton loading state
-                <>
-                  {[...Array(3)].map((_, index) => (
-                    <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
-                      <div className="rounded-t-xl w-full aspect-square bg-gray-300"></div>
-                      <div className="p-6">
-                        <div className="h-6 bg-gray-300 rounded w-3/4 mb-4"></div>
-                        <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-                        <div className="h-4 bg-gray-300 rounded w-5/6 mb-4"></div>
-                        <div className="h-10 bg-gray-300 rounded w-1/3"></div>
-                      </div>
-                    </div>
-                  ))}
-                </>
-              )}
+                  <h3 className="text-xl font-bold text-gray-900 text-center mb-3">{feature.title}</h3>
+                  <p className="text-gray-600 text-center">{feature.description}</p>
+                </div>
+              ))}
             </div>
 
             <div className="mt-10 md:mt-12 text-center animate-fade-in-up animation-delay-400">
               <Link 
-                href="/products"
+                href="/about"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 transition duration-300 transform hover:scale-105 touch-target-large focus-visible-ring"
               >
-                View All Products
+                Learn More About Us
                 <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>

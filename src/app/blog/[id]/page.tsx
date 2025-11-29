@@ -27,7 +27,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
       date: string;
       category: string;
       content: string;
-      imageUrl: string;
+      imageUrl?: string;
       excerpt: string;
       readTime: string;
       tags: string[];
@@ -195,24 +195,22 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
         </section>
         
         {/* Featured Image */}
-        {post.imageUrl && (
-          <section className="py-12 bg-gradient-to-b from-white to-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50">
-                <Image 
-                  src={post.imageUrl} 
-                  alt={post.title} 
-                  width={800}
-                  height={400}
-                  className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
-                />
-              </div>
-              <div className="text-center mt-4">
-                <p className="text-gray-600 text-sm italic">Featured image for &quot;{post.title}&quot;</p>
-              </div>
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50">
+              <Image 
+                src={post.imageUrl || '/no_image.png'} 
+                alt={post.title} 
+                width={800}
+                height={400}
+                className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+              />
             </div>
-          </section>
-        )}
+            <div className="text-center mt-4">
+              <p className="text-gray-600 text-sm italic">Featured image for &quot;{post.title}&quot;</p>
+            </div>
+          </div>
+        </section>
         
         {/* Blog Post Content */}
         <section className="py-16 bg-white">
@@ -455,7 +453,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
                     date: string;
                     category: string;
                     content: string;
-                    imageUrl: string;
+                    imageUrl?: string;
                     excerpt: string;
                     readTime: string;
                     tags: string[];
@@ -472,7 +470,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
                       <div key={relatedPost.id} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col h-[400px]">
                         <div className="h-40 overflow-hidden">
                           <Image 
-                            src={relatedPost.imageUrl || `https://images.unsplash.com/photo-${relatedPost.id % 3 === 0 ? '1615484477773-40c6b7b5b78d' : relatedPost.id % 2 === 0 ? '1582515073490-39981397c445' : '1593587157138-68b77949b3a5'}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80`} 
+                            src={relatedPost.imageUrl || '/no_image.png'} 
                             alt={relatedPost.title} 
                             fill
                             className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"

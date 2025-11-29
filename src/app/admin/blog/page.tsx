@@ -14,7 +14,7 @@ interface BlogPost {
   date: string;
   status: string;
   content: string;
-  imageUrl: string;
+  imageUrl?: string;
   excerpt: string;
   readTime: string;
   tags: string[];
@@ -82,11 +82,7 @@ export default function AdminBlog() {
   };
 
   const handleSave = (postData: any) => {
-    // Validate that an image is provided
-    if (!postData.imageUrl) {
-      showAlertPopup('A featured image is required!', 'error');
-      return;
-    }
+    // Image is now optional, so we don't validate it
     
     // Process tags from comma-separated string to array
     const tagsArray = postData.tags 
@@ -295,7 +291,7 @@ export default function AdminBlog() {
 
                 <div className="sm:col-span-2">
                   <label htmlFor="imageUrl" className="block text-sm font-medium text-black">
-                    Featured Image *
+                    Featured Image (Optional)
                   </label>
                   <div className="mt-1 flex items-center space-x-4">
                     <input
@@ -305,7 +301,7 @@ export default function AdminBlog() {
                       value={formData.imageUrl}
                       onChange={handleChange}
                       className="flex-1 border border-black rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm transition-all duration-200"
-                      placeholder="https://example.com/image.jpg (required)"
+                      placeholder="https://example.com/image.jpg (optional)"
                     />
                     <input
                       type="file"
@@ -327,7 +323,7 @@ export default function AdminBlog() {
                       }}
                       className="block w-full text-sm text-black file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-100 file:text-emerald-700 hover:file:bg-emerald-200 transition-all duration-200"
                     />
-                    <p className="mt-1 text-xs text-black">Image upload is required</p>
+                    <p className="mt-1 text-xs text-black">If no image is provided, a default image will be shown</p>
                   </div>
                   <p className="mt-2 text-sm text-black">Enter the URL of the featured image or upload from your device</p>
                   {formData.imageUrl && (
@@ -463,7 +459,7 @@ export default function AdminBlog() {
         </div>
       )}
 
-      <div className="mb-6">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex-1 min-w-0">
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl flex items-center">
             <svg className="h-7 w-7 mr-3 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -473,10 +469,10 @@ export default function AdminBlog() {
           </h2>
           <p className="mt-2 text-base text-gray-600">Manage your blog content</p>
         </div>
-        <div className="mt-4 flex md:mt-0 md:ml-4">
+        <div className="mt-4 md:mt-0">
           <button
             onClick={handleAddNew}
-            className="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all duration-300"
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all duration-300"
           >
             <svg className="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
@@ -528,7 +524,7 @@ export default function AdminBlog() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
-                          <Image className="h-10 w-10 rounded-md object-cover" src={post.imageUrl || 'https://images.unsplash.com/photo-1602015222395-1f47d6e0c7fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'} alt={post.title} width={40} height={40} />
+                          <Image className="h-10 w-10 rounded-md object-cover" src={post.imageUrl || '/no_image.png'} alt={post.title} width={40} height={40} />
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">{post.title}</div>

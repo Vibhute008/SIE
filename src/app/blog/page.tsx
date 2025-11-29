@@ -14,7 +14,7 @@ interface BlogPost {
   date: string;
   category: string;
   readTime: string;
-  imageUrl: string;
+  imageUrl?: string;
   status?: string;
   content?: string; // Add content property
 }
@@ -212,7 +212,7 @@ export default function BlogPage() {
                     {/* Image Container - 60% of the card height */}
                     <div className="h-52 overflow-hidden relative">
                       <Image 
-                        src={post.imageUrl || `https://images.unsplash.com/photo-${post.id % 3 === 0 ? '1615484477773-40c6b7b5b78d' : post.id % 2 === 0 ? '1582515073490-39981397c445' : '1593587157138-68b77949b3a5'}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80`} 
+                        src={post.imageUrl || '/no_image.png'} 
                         alt={post.title} 
                         fill
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
